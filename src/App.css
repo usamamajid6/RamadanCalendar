@@ -1,38 +1,108 @@
-.App {
+.mainHead {
+  background-color: rgb(78, 105, 228);
+  font-weight: bolder;
+  font-size: 3rem;
   text-align: center;
+  padding: 2rem;
+  outline: 4px solid black;
+  color: #fcf300;
+  /* -webkit-text-stroke: 1px white; */
+  text-transform: capitalize;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.searchBarContainer {
+  padding: 1rem;
+  margin: 3rem 0 0 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* .searchBarFrom .searchBarButton{
+ margin: 0;
+} */
+
+.searchBar {
+  width: 80%;
+  /* outline: 1px solid black; */
+  /* border-radius: 20px; */
+  font-size: 1.3rem;
+  text-indent: 0.8rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.searchBarButton {
+  width: 20%;
+  font-size: 1.3rem;
+  padding: 0;
+  margin: 0;
+  background-color: dodgerblue;
   color: white;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.searchBarHead {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.searchLoader {
+  color: dodgerblue;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.calendar {
+  padding: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.tableTitle {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+.footer{
+  background-color: rgb(78, 105, 228);
+  font-weight: bolder;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+  outline: 2px solid black;
+  margin: 5rem 0 0 0;
+}
+/********** Large devices only **********/
+
+@media (min-width: 1200px) {
+}
+
+/********** Medium devices only **********/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/********** Small devices only **********/
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .mainHead {
+    font-size: 2.5rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/********** Extra small devices only **********/
+
+@media (max-width: 767px) {
+  .mainHead {
+    font-size: 2.2rem;
   }
+}
+
+/********** Super extra small devices Only **********/
+
+@media (max-width: 479px) {
+  .mainHead {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 520px) {
 }
