@@ -9,6 +9,7 @@ import dateFormat from "dateformat";
 import Loader from "react-loader-spinner";
 import cities from "./citiesList";
 import endpoint from "./serverEndPonit";
+import base64Img from "base64-img";
 
 import "react-autocomplete-input/dist/bundle.css";
 import "./App.css";
@@ -46,6 +47,7 @@ class App extends Component {
     tableTitle: null,
     errorInGettingData: false,
     errorInSearchString: false,
+    downloadButton:true,
   };
   _handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -67,6 +69,7 @@ class App extends Component {
       searchLoader: true,
       errorInGettingData: false,
       errorInSearchString: false,
+      downloadButton:true,
       timings: [],
     });
 
@@ -81,6 +84,7 @@ class App extends Component {
             tableTitle: "",
             tableLoader: false,
             searchLoader: false,
+            downloadButton:true,
           });
         } else if (res.status === 200) {
           let data = res.data.response.items;
@@ -92,16 +96,16 @@ class App extends Component {
           }
           this.setState({
             timings: data,
-          });
-          this.setState({
             tableLoader: false,
             searchLoader: false,
+            downloadButton:false,
           });
         } else {
           this.setState({
             tableLoader: false,
             searchLoader: false,
             errorInGettingData: true,
+            downloadButton:true,
           });
         }
       })
@@ -110,34 +114,32 @@ class App extends Component {
           tableLoader: false,
           searchLoader: false,
           errorInGettingData: true,
+          downloadButton:true,
         });
         console.log(err);
       });
   };
 
   handleExportAsImage = () => {
-    // let htmlString = `<table>
-    // <tbody>
-    // <tr>
-    // <td>a;</td>
-    // <td>b;</td>
-    // <td>b;</td>
-    // </tr>
-    // <tr>
-    // <td>A</td>
-    // <td>B</td>
-    // <td>C</td>
-    // </tr>
-    // </tbody>
-    // </table>`;
-    // var div = document.createElement("DIV");
-    // div.innerHTML = htmlString;
-    // document.getElementById("calendar").innerHTML=div;
-    // console.log(document.getElementById('calendar'));
-    // htmlToImage
-    //   .toPng(document.getElementById('imageDiv'))
-    //   .then(function (dataUrl) {
-    //     download(dataUrl, "my-node.png");
+    window.location=`${endpoint}/getImage/${this.state.searchValue}`;
+    // axios({
+    //   method: "get",
+    //   url: `${endpoint}/getImage/${this.state.searchValue}`,
+    // })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     base64Img.img(res.data, 'dest', '1', function(err, filepath) {
+    //       console.log(filepath);
+          
+    //     });
+
+    //     if (res.status === 204) {
+    //     } else if (res.status === 200) {
+    //     } else {
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
     //   });
   };
 
@@ -229,7 +231,7 @@ class App extends Component {
                 bordered={true}
                 loading={this.state.tableLoader}
               />
-              <Button type="primary" onClick={this.handleExportAsImage}>
+              <Button disabled={this.state.downloadButton} type="primary" onClick={this.handleExportAsImage}>
                 Download Calendar
               </Button>
             </Col>
