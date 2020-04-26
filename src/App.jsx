@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { Row, Col, Table, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import AutoComplete from "react-autocomplete-input";
-import key from "./MuslimSalatAPIKey";
 import axios from "axios";
 import htmlToImage from "html-to-image";
 import download from "downloadjs";
 import Loader from "react-loader-spinner";
 import cities from "./citiesList";
+import endpoint from "./serverEndPonit";
 import "react-autocomplete-input/dist/bundle.css";
 import "./App.css";
+
 const calendarHeading = [
   {
     title: "Roza #",
@@ -66,20 +67,21 @@ class App extends Component {
       errorInSearchString: false,
       timings: [],
     });
-    axios
-      .get(
-        `https://muslimsalat.com/${this.state.searchValue}/yearly/24-04-2020.json?key=${key}`
-      )
+
+    axios({
+      method: "get",
+      url: `${endpoint}/getTimings/${this.state.searchValue}`,
+    })
       .then((res) => {
-        if (res.data.status_description === "Failed.") {
+        if (res.status === 204) {
           this.setState({
             errorInSearchString: true,
             tableTitle: "",
             tableLoader: false,
             searchLoader: false,
           });
-        } else {
-          let data = res.data.items;
+        } else if (res.status === 200) {
+          let data = res.data.response.items;
           data.splice(30, data.length);
           for (let i = 0; i < data.length; i++) {
             const element = data[i];
@@ -91,6 +93,12 @@ class App extends Component {
           this.setState({
             tableLoader: false,
             searchLoader: false,
+          });
+        } else {
+          this.setState({
+            tableLoader: false,
+            searchLoader: false,
+            errorInGettingData: true,
           });
         }
       })
