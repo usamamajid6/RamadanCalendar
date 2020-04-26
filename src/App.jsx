@@ -5,9 +5,11 @@ import AutoComplete from "react-autocomplete-input";
 import axios from "axios";
 import htmlToImage from "html-to-image";
 import download from "downloadjs";
+import dateFormat from "dateformat";
 import Loader from "react-loader-spinner";
 import cities from "./citiesList";
 import endpoint from "./serverEndPonit";
+
 import "react-autocomplete-input/dist/bundle.css";
 import "./App.css";
 
@@ -86,6 +88,7 @@ class App extends Component {
           for (let i = 0; i < data.length; i++) {
             const element = data[i];
             element.roza = i + 1;
+            element.date_for = dateFormat(element.date_for, "fullDate");
           }
           this.setState({
             timings: data,
@@ -113,11 +116,29 @@ class App extends Component {
   };
 
   handleExportAsImage = () => {
-    htmlToImage
-      .toPng(document.getElementById("calendar"))
-      .then(function (dataUrl) {
-        download(dataUrl, "my-node.png");
-      });
+    // let htmlString = `<table>
+    // <tbody>
+    // <tr>
+    // <td>a;</td>
+    // <td>b;</td>
+    // <td>b;</td>
+    // </tr>
+    // <tr>
+    // <td>A</td>
+    // <td>B</td>
+    // <td>C</td>
+    // </tr>
+    // </tbody>
+    // </table>`;
+    // var div = document.createElement("DIV");
+    // div.innerHTML = htmlString;
+    // document.getElementById("calendar").innerHTML=div;
+    // console.log(document.getElementById('calendar'));
+    // htmlToImage
+    //   .toPng(document.getElementById('imageDiv'))
+    //   .then(function (dataUrl) {
+    //     download(dataUrl, "my-node.png");
+    //   });
   };
 
   displayError = () => {
