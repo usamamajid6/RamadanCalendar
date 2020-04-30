@@ -19,21 +19,25 @@ const calendarHeading = [
     title: "Roza #",
     dataIndex: "roza",
     key: "roza",
+    className: "calendar",
   },
   {
     title: "Date",
     dataIndex: "date_for",
     key: "date_for",
+    className: "calendar",
   },
   {
     title: "Sehri",
     dataIndex: "fajr",
     key: "fajr",
+    className: "calendar toUpper",
   },
   {
     title: "Aftari",
     dataIndex: "maghrib",
     key: "maghrib",
+    className: "calendar toUpper",
   },
 ];
 
@@ -47,7 +51,7 @@ class App extends Component {
     tableTitle: null,
     errorInGettingData: false,
     errorInSearchString: false,
-    downloadButton:true,
+    downloadButton: true,
   };
   _handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -69,7 +73,7 @@ class App extends Component {
       searchLoader: true,
       errorInGettingData: false,
       errorInSearchString: false,
-      downloadButton:true,
+      downloadButton: true,
       timings: [],
     });
 
@@ -84,7 +88,7 @@ class App extends Component {
             tableTitle: "",
             tableLoader: false,
             searchLoader: false,
-            downloadButton:true,
+            downloadButton: true,
           });
         } else if (res.status === 200) {
           let data = res.data.response.items;
@@ -98,14 +102,14 @@ class App extends Component {
             timings: data,
             tableLoader: false,
             searchLoader: false,
-            downloadButton:false,
+            downloadButton: false,
           });
         } else {
           this.setState({
             tableLoader: false,
             searchLoader: false,
             errorInGettingData: true,
-            downloadButton:true,
+            downloadButton: true,
           });
         }
       })
@@ -114,14 +118,14 @@ class App extends Component {
           tableLoader: false,
           searchLoader: false,
           errorInGettingData: true,
-          downloadButton:true,
+          downloadButton: true,
         });
         console.log(err);
       });
   };
 
   handleExportAsImage = () => {
-    window.location=`${endpoint}/getImage/${this.state.searchValue}`;
+    window.location = `${endpoint}/getImage/${this.state.searchValue}`;
     // axios({
     //   method: "get",
     //   url: `${endpoint}/getImage/${this.state.searchValue}`,
@@ -130,7 +134,7 @@ class App extends Component {
     //     console.log(res.data);
     //     base64Img.img(res.data, 'dest', '1', function(err, filepath) {
     //       console.log(filepath);
-          
+
     //     });
 
     //     if (res.status === 204) {
@@ -181,6 +185,7 @@ class App extends Component {
                           searchValue: e,
                         });
                       }}
+                      value={this.state.searchValue}
                     />
                     <Button
                       type="primary"
@@ -231,8 +236,12 @@ class App extends Component {
                 bordered={true}
                 loading={this.state.tableLoader}
               />
-              <Button disabled={this.state.downloadButton} type="primary" onClick={this.handleExportAsImage}>
-                Download Calendar
+              <Button
+                disabled={this.state.downloadButton}
+                type="primary"
+                onClick={this.handleExportAsImage}
+              >
+                Download As Image
               </Button>
             </Col>
             <Col xs={1} sm={2} md={4} lg={6}></Col>

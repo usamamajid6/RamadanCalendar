@@ -50,9 +50,13 @@
 
 .calendar {
   padding: 1rem;
-  text-align: center;
-  justify-content: center;
+  text-align: center !important;
 }
+
+.toUpper{
+  text-transform: uppercase;
+}
+
 
 .tableTitle {
   text-transform: uppercase;
@@ -101,6 +105,9 @@
 @media (max-width: 479px) {
   .mainHead {
     font-size: 2rem;
+  }
+  .calendar{
+    font-size:0.8rem
   }
 }
 
