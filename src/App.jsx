@@ -248,7 +248,16 @@ class App extends Component {
           </Row>
         </Col>
         <Col span={24}>
-          <div className="footer">By Usama Majid</div>
+          <div className="footer">
+            By Usama Majid <br />
+            <a
+              style={{ color: "black" }}
+              href="https://this-is-usama-majid.netlify.app/"
+              target="_blank"
+            >
+              Conatct Me
+            </a>
+          </div>
         </Col>
       </Row>
     );
