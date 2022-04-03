@@ -3,13 +3,10 @@ import { Row, Col, Table, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import AutoComplete from "react-autocomplete-input";
 import axios from "axios";
-import htmlToImage from "html-to-image";
-import download from "downloadjs";
 import dateFormat from "dateformat";
 import Loader from "react-loader-spinner";
 import cities from "./citiesList";
 import endpoint from "./serverEndPonit";
-import base64Img from "base64-img";
 
 import "react-autocomplete-input/dist/bundle.css";
 import "./App.css";
@@ -160,7 +157,7 @@ class App extends Component {
     return (
       <Row>
         <Col span={24}>
-          <div className="mainHead">RAMADAN CALENDAR 2020</div>
+          <div className="mainHead">RAMADAN CALENDAR 2022</div>
         </Col>
         <Col span={24} className="searchBarContainer">
           <Row>
@@ -254,6 +251,7 @@ class App extends Component {
               style={{ color: "black" }}
               href="https://this-is-usama-majid.netlify.app/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Conatct Me
             </a>

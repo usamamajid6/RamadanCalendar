@@ -1,4 +1,4 @@
-const citiesList = {
+export const citiesList = {
   cities: [
     "Ahmadpur East",
     "Ahmed Nager Chatha",
